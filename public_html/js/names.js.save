@@ -1,0 +1,34 @@
+const urlPrefix="http://35.231.37.179/";
+
+document.getElementById("letters").addEventListener("keyup",showHint);
+
+function showHint() {
+    if (this.value.length == 0) { 
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+        let AJAX = new XMLHttpRequest();
+  	AJAX.onerror = function() { 
+		alert("Network error");
+	}
+	AJAX.onload = function() {
+		if (this.status == 200){
+			console.log(this.responseText);
+                        let names = JSON.parse(this.responseText).names;
+                        let namesStr = "";
+			for (k in names)
+				namesStr = namesStr + " " + names[k];
+		         document.getElementById("txtHint").innerHTML = namesStr;
+		} //if	
+		
+		else{
+			alert("Server AJAX error");
+			console.log(this.status);
+			console.log(this.responseText);
+		    } //else
+			
+	}   //onload     
+       	AJAX.open("GET",urlPrefix+"getNames?letters="+this.value);
+	AJAX.send();
+   } //else
+}  //showhint
