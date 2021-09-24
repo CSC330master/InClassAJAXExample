@@ -57,7 +57,7 @@ exports.getNames = function(query,response) {
 // callback function for filter. Notice that it is defined locally inside
 // getNames to make query accessible within its scope
     function containsPrefix(name) {
-        return (name.toLowerCase().indexOf(query.letters) == 0);
+        return (name.toLowerCase().indexOf(query.letters.toLowerCase()) == 0);
     }
 
 }
