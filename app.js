@@ -18,10 +18,10 @@ function handle_incoming_request(req, res) {
             case "/" :  //return default homepage
 		// precede the given path with name of the subdirectory in which
             	// the client files are stored 
-                fileServer.serve_static_file("public_html/names.html",res);
+                fileServer.serve_static_file("./public_html/names.html",res);
                 break;
             default:
-                fileServer.serve_static_file("public_html"+path,res);
+                fileServer.serve_static_file("./public_html"+path,res);
                 break;
         }    
             
