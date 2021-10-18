@@ -13,7 +13,6 @@ exports.serve_static_file = function (fileName, res) {
         if (err) { // readFile generates an err object
             let out = { error: "not_found",message: "'" + fileName + "' not found" };
             utils.sendJSONObj(res,404,out);
-            res.end(JSON.stringify(out) + "\n");
         }
         else { //readFile success
             let ct = content_type_for_path(fileName); //get contect type
